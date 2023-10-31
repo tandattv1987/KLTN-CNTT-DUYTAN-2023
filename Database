@@ -1,0 +1,52 @@
+CREATE TABLE [dbo].[tblDangNhap] (
+    [UserName] NVARCHAR (50) NOT NULL,
+    [PassWord] NVARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([UserName] ASC)
+);
+
+CREATE TABLE [dbo].[tbHang] (
+    [MaHang]     NVARCHAR (50) NOT NULL,
+    [TenHang]    NVARCHAR (50) NULL,
+    [MaChatLieu] NVARCHAR (50) NULL,
+    [SoLuong]    NVARCHAR (50) NULL,
+    [DonGiaNhap] NVARCHAR (50) NULL,
+    [DonGiaBan]  NVARCHAR (50) NULL,
+    [Anh]        NVARCHAR (50) NULL,
+    [GhiChu]     NCHAR (10)    NULL,
+    PRIMARY KEY CLUSTERED ([MaHang] ASC)
+);
+
+CREATE TABLE [dbo].[tblChatLieu] (
+    [MaChatLieu]  NVARCHAR (50) NOT NULL,
+    [TenChatLieu] NVARCHAR (50) NOT NULL,
+    PRIMARY KEY CLUSTERED ([MaChatLieu] ASC)
+);
+
+CREATE TABLE [dbo].[tblKhach] (
+    [MaKhach]   NVARCHAR (50) NOT NULL,
+    [TenKhach]  NVARCHAR (50) NULL,
+    [DiaChi]    NVARCHAR (50) NULL,
+    [DienThoai] NVARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([MaKhach] ASC)
+);
+CREATE TABLE [dbo].[tblNhanVien] (
+    [MaNhanVien]  NVARCHAR (50) NOT NULL,
+    [TenNhanVien] NVARCHAR (50) NULL,
+    [GioiTinh]    NVARCHAR (50) NULL,
+    [DiaChi]      NVARCHAR (50) NULL,
+    [DienThoai]   NVARCHAR (50) NULL,
+    [NgaySinh]    NVARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([MaNhanVien] ASC)
+);
+
+CREATE TABLE [dbo].[tblChiTietHDBan] (
+    [MaHDBAN]   NVARCHAR (50) NOT NULL,
+    [MaHang]    NVARCHAR (50) NULL,
+    [SoLuong]   NVARCHAR (50) NULL,
+    [DonGia]    NVARCHAR (50) NULL,
+    [GiamGia]   NVARCHAR (50) NULL,
+    [ThanhTien] NVARCHAR (50) NULL,
+    PRIMARY KEY CLUSTERED ([MaHDBAN] ASC)
+);
+    
+
