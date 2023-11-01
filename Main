@@ -1,0 +1,59 @@
+using System;
+using System.Windows.Forms;
+using Quanlybanhang.Class;
+
+namespace Quanlybanhang
+{
+    public partial class frmMain : Form
+    {
+        public frmMain()
+        {
+            InitializeComponent();
+        }
+
+        
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            Class.Functions.Connect(); // Mở kết nối
+        }
+
+        private void frmMain_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void mnuThoat_Click(object sender, EventArgs e)
+        {
+            Functions.Disconnect();
+            Application.Exit();
+        }
+
+        private void mnuChatLieu_Click(object sender, EventArgs e)
+        {
+            frmDMChatLieu frm = new frmDMChatLieu();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void mnuHangHoa_Click(object sender, EventArgs e)
+        {
+            frmDMHangHoa frm = new frmDMHangHoa();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void mnuNhanVien_Click(object sender, EventArgs e)
+        {
+            frmDMNhanvien frm = new frmDMNhanvien();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void mnuKhachHang_Click(object sender, EventArgs e)
+        {
+            frmDMKhachHang frm = new frmDMKhachHang();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+    }
+}
