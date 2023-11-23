@@ -12,16 +12,20 @@ CREATE TABLE [dbo].[tblDangNhap] (
  CONSTRAINT [PK_tblDangnhap] PRIMARY KEY CLUSTERED 
 );
 
-CREATE TABLE [dbo].[tbHang] (
-    [MaHang]     NVARCHAR (50) NOT NULL,
-    [TenHang]    NVARCHAR (50) NULL,
-    [MaChatLieu] NVARCHAR (50) NULL,
-    [SoLuong]    NVARCHAR (50) NULL,
-    [DonGiaNhap] NVARCHAR (50) NULL,
-    [DonGiaBan]  NVARCHAR (50) NULL,
-    [Anh]        NVARCHAR (50) NULL,
-    [GhiChu]     NCHAR (10)    NULL,
-    PRIMARY KEY CLUSTERED ([MaHang] ASC)
+CREATE TABLE [dbo].[tblHang](
+	[mahang] [nvarchar](50) NOT NULL,
+	[tenhang] [nvarchar](100) NOT NULL,
+	[soluong] [int] NOT NULL,
+	[dongianhap] [numeric](11, 0) NOT NULL,
+	[dongiaban] [numeric](11, 0) NOT NULL,
+	[machatlieu] [nvarchar](50) NOT NULL,
+	[anh] [nchar](50) NULL,
+	[ghichu] [nvarchar](100) NULL,
+	[createby] [int] NULL,
+	[createdate] [datetime] NULL,
+	[modifiedby] [int] NULL,
+	[modifieddate] [datetime] NULL,
+	PRIMARY KEY CLUSTERED ([mahang] ASC)
 );
 
 CREATE TABLE [dbo].[tblChatLieu] (
