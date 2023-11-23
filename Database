@@ -1,7 +1,15 @@
 CREATE TABLE [dbo].[tblDangNhap] (
-    [UserName] NVARCHAR (50) NOT NULL,
-    [PassWord] NVARCHAR (50) NULL,
-    PRIMARY KEY CLUSTERED ([UserName] ASC)
+	[userID] [int] IDENTITY(1,1) NOT NULL,
+	[username] [varchar](100) NOT NULL,
+	[password] [varchar](100) NOT NULL,
+	[otp] [char](6) NULL,
+	[email] [varchar](100) NOT NULL,
+	[fullname] [nvarchar](100) NOT NULL,
+	[createby] [int] NULL,
+	[createdate] [datetime] NULL,
+	[modifiedby] [int] NULL,
+	[modifieddate] [datetime] NULL,
+ CONSTRAINT [PK_tblDangnhap] PRIMARY KEY CLUSTERED 
 );
 
 CREATE TABLE [dbo].[tbHang] (
