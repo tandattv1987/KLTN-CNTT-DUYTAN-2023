@@ -9,11 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ExcelDataReader;
-using Microsoft.Office.Interop.Excel;
+//using Microsoft.Office.Interop.Excel;
 using QUANLYBANHANG.DAO;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using Application = Microsoft.Office.Interop.Excel.Application;
+//using Application = Microsoft.Office.Interop.Excel.Application;
 using DataTable = System.Data.DataTable;
 using Image = System.Drawing.Image;
 
@@ -524,6 +524,8 @@ namespace QUANLYBANHANG
 
         private void btnImport_Click(object sender, EventArgs e)
         {
+            int m_count = 0;
+            int r = this.DgvHangHoa.CurrentCell.RowIndex;
             using (OpenFileDialog fileDialog = new OpenFileDialog())
             {
                 fileDialog.Filter = "Excel files (*.xlsx, *.xls)|*.xlsx;*.xls";
@@ -567,14 +569,21 @@ namespace QUANLYBANHANG
                                 string m_machatlieu = dataTable.Rows[i][5].ToString();
                                 string m_ghichu = dataTable.Rows[i][6].ToString();
                                 string m_anh = dataTable.Rows[i][7].ToString();
-                                InsertHangHoa(m_mahang, m_tenhang, m_soluong, m_dongianhap, m_dongiaban, m_machatlieu, m_anh, m_ghichu);
+                                if (SelectHangHoabyMahang(m_mahang, m_tenhang))
+                                {
+                                    InsertHangHoa(m_mahang, m_tenhang, m_soluong, m_dongianhap, m_dongiaban, m_machatlieu, m_anh, m_ghichu);
+                                    m_count++;
+                                }
+                                
                             }
-                            MessageBox.Show("Import thành công");
+                            btnReload.PerformClick();
+                            DgvHangHoa.CurrentCell = DgvHangHoa.Rows[r].Cells["Mã hàng"];
+                            MessageBox.Show("Import thành công "+m_count.ToString().Trim() + " Mã hàng!");
                         }
                         catch (Exception)
                         {
 
-                            MessageBox.Show("Import thất bại");
+                            MessageBox.Show("Import thất bại!");
                         }
 
 
@@ -584,6 +593,22 @@ namespace QUANLYBANHANG
             }
         }
 
+        private bool SelectHangHoabyMahang(string xmahang, string xtenhang)
+        {
+            bool kq;
+            string query = "SELECT mahang FROM [dbo].[tblHang] WHERE mahang = '" + xmahang + "'";
+            DataTable dt = DataProvider.Instance.ExecuteQuery(query);
+
+            if (dt.Rows.Count > 0)
+            {
+                MessageBox.Show("Trùng mã hàng " + xmahang.Trim() + " - " + xtenhang.Trim() +". Không Import!", "Waning");
+                kq = false;
+            }
+            else
+                kq = true;
+
+            return kq;
+        }
 
         private void txtMahang_KeyPress(object sender, KeyPressEventArgs e)
         {
